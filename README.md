@@ -3,3 +3,23 @@
 Learn what Terraform functions are and how to use them.
 
 Follow along with the [Learn tutorial at HashiCorp Learn](https://learn.hashicorp.com/tutorials/terraform/functions?in=terraform/configuration-language).
+
+
+## template関数
+テンプレートファイルを読み込む
+テンプレートファイル内にterraformの変数を設定することも可能
+
+``` terraform
+resource "aws_instance" "web" {
+  user_data = templatefile("user_data.tftpl", { department = var.user_department, name = var.user_name })
+}
+
+```
+
+※user_data.tftpl内にて${変数}のように変数を参照。
+例）
+sudo groupadd -r ${department}
+sudo useradd -m -s /bin/bash ${name}
+sudo usermod -a -G ${department} ${name}
+
+## lookup関数

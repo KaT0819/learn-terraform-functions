@@ -27,3 +27,6 @@ variable "user_department" {
   description = "The organization the user belongs to: dev, prod, qa"
   default     = "learn"
 }
+
+variable "aws_access_key" {}
+variable "aws_secret_key" {}

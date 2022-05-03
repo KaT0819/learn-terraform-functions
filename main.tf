@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "~> 3.47.0"
     }
   }
@@ -10,7 +10,9 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.aws_region
+  region     = var.aws_region
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
 data "aws_ami" "ubuntu" {
@@ -83,4 +85,5 @@ resource "aws_instance" "web" {
   subnet_id                   = aws_subnet.subnet_public.id
   vpc_security_group_ids      = [aws_security_group.sg_8080.id]
   associate_public_ip_address = true
+  user_data                   = templatefile("user_data.tftpl", { department = var.user_department, name = var.user_name })
 }
