@@ -23,3 +23,12 @@ sudo useradd -m -s /bin/bash ${name}
 sudo usermod -a -G ${department} ${name}
 
 ## lookup関数
+キーを指定して、マップから単一の要素の値を取得
+
+```
+# デプロイ
+terraform apply -var "aws_region=us-east-2"
+
+# 破棄
+terraform destroy -var "aws_region=us-east-2"
+```
