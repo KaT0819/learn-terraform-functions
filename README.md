@@ -32,3 +32,21 @@ terraform apply -var "aws_region=us-east-2"
 # 破棄
 terraform destroy -var "aws_region=us-east-2"
 ```
+
+## conkat関数
+2つ以上のリストを受け取り、それらを1つのリストに結合
+
+```
+# SSHキーの生成
+ssh-keygen -C "your_email@example.com" -f ssh_key
+
+# デプロイ
+terraform apply
+
+# 8080ポートのセキュリティグループを確認
+ssh ubuntu@$(terraform output -raw web_public_ip) -i ssh_key
+
+# 破棄
+terraform destroy
+
+```
